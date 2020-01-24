@@ -1,11 +1,11 @@
 import React from 'react'
-import { calculateEmission } from '../utils'
+import { generateGraphPoints } from '../utils'
 
-calculateEmission(1)
+const graphPoints = generateGraphPoints()
 
 const Footer = () => (
   <div>
-    I am a footer
+    <pre>{JSON.stringify(graphPoints, null, 2)}</pre>
   </div>
 )
 

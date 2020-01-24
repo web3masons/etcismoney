@@ -1,57 +1,48 @@
-// ecip 1017
-const eraBlocks = 5000000
-const staticReward = 5
+const blockPerEra = 5000000
 const reductionRate = 0.2
-const initialUncleMinerReward = 7 / 8
-const adjustedUncleMinerReward = 1 / 32
-const uncleInclusionReward = 1 / 32
+const staticReward = 5
 const maxUncleRewards = 2
+const uncleInclusionReward = 1 / 32
+const era1UncleMinerReward = 7 / 8
+const era2UncleMinerReward = 1 / 32
 const initialAmount = 72002454.77
 const averageUncles = 0.054
-const blockTime = 15
-const startDate = '' // 07 30 2016
+const averageBlockTime = 15
+const startDate = new Date('07/30/2015').getTime()
 
-const initialEmission =
-  staticReward +
-  (initialUncleMinerReward * staticReward * averageUncles * maxUncleRewards) +
-  (uncleInclusionReward * staticReward * averageUncles * maxUncleRewards)
+const averageBaseUncleEmission = staticReward * averageUncles * maxUncleRewards
 
-const adjustedStaticReward = staticReward - (staticReward * reductionRate)
-
-const adjustedEmission =
-  adjustedStaticReward +
-  adjustedUncleMinerReward * adjustedStaticReward * averageUncles * maxUncleRewards +
-  uncleInclusionReward * adjustedStaticReward * averageUncles * maxUncleRewards
-
-export function calculateEmission (blockNumber) {
-  const block = 2650000 * 2
-  // console.log({ initialEmission, adjustedEmission })
-  const eras = block / eraBlocks
-  let totalEmission = initialAmount
-  for (let era = 0; era < eras; era++) {
-    const isLastEra = era + 1 > eras
-    const thisEraBlocks = era * eraBlocks
-    const nextEraBlocks = (era + 1) * eraBlocks
-    const blocksToCount = isLastEra ? block - thisEraBlocks : nextEraBlocks
-    // TODO adjust yearly
-    const thisEmission = era === 0 ? initialEmission : adjustedEmission
-    totalEmission += blocksToCount * thisEmission
-    // console.log( thisEraBlocks)
-    console.log({
-      era,
-      block,
-      blocksToCount,
-      totalEmission
-    })
-  }
+function calculateEraEmission (uncleMinerReward) {
+  return (
+    staticReward +
+    (uncleMinerReward * averageBaseUncleEmission) +
+    (uncleInclusionReward * averageBaseUncleEmission)
+  )
 }
-//   // TODO run this for each era with different numbers.
-//   // const rewardsPerBlock = config.staticReward
-//   // const baseReward = blockNumber * config.staticReward
-//   if (blockNumber < eraBlocks) {
 
-//   }
-//   const uncleMinerReward = config.staticReward * (blockNumber <= eraBlocks ? initialUncleMinerReward : adjustedUncleMinerReward);
-//   const uncleInclusionreward =
+const era1Emission = calculateEraEmission(era1UncleMinerReward)
+const era2Emission = calculateEraEmission(era2UncleMinerReward)
 
-// }
+export function calculateBlockEmission (block) {
+  const maxEras = block / blockPerEra
+  let totalEmission = initialAmount
+  for (let era = 0; era < maxEras; era++) {
+    const isFirstEra = era === 0
+    const isLastEra = era + 1 > maxEras
+    const thisEraBlocks = isLastEra ? (block - era * blockPerEra) : blockPerEra
+    const thisEraEmission = isFirstEra ? era1Emission : era2Emission * Math.pow(1 - reductionRate, era)
+    totalEmission += thisEraBlocks * thisEraEmission
+  }
+  return Math.floor(totalEmission)
+}
+
+export function generateGraphPoints (resolution = 50, endBlock = 100000000) {
+  // estimate the time based on seconds
+  const interval = endBlock / resolution
+  return new Array(resolution + 1).fill(null).map((n, i) => {
+    const block = interval * i
+    const date = new Date(startDate + (block * averageBlockTime * 1000))
+    // todo time etc.
+    return { block, emission: calculateBlockEmission(block), date }
+  })
+}
