@@ -6,7 +6,6 @@ An ETC block reward halvening countdown clock (and more) microsite
 
 - Big countdown clock of next halvening
 
-
 - Blocks Until Next Halvening
 
 - ETC Circulation Facts
@@ -23,6 +22,8 @@ An ETC block reward halvening countdown clock (and more) microsite
   - Block Generation Time
   - Blocks per Day
 
+- Comparison chart of different currencies
+
 ## vNext
 
 Requires extra API calls
@@ -31,6 +32,5 @@ Requires extra API calls
   - Graph of price history
   - Market Cap
   - Ranking
-
 
 - Hash Rate Chart

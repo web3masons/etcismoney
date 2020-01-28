@@ -1,0 +1,73 @@
+$light: rgba(255,255,255,.3);
+html {
+  background: rgb(200, 237, 200);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.chart-container {
+  > div {
+    background: $light;
+    margin-left: 20px;
+    margin-top: 20px;
+    padding: 15px;
+  }
+}
+
+.hard-money {
+  text-align: left;
+  ul, li {
+    padding: 0;
+    margin: 0;
+  }
+  li {
+    margin-left: 10px;
+    margin-bottom: 15px;
+  }
+}
+
+.countdown {
+  margin: 20px 0;
+  .grid {
+    grid-template-columns: repeat(4, 1fr);
+    margin: auto;
+    width: 500px;
+    background:$light;
+    > div {
+      padding: 30px 10px;
+      > div {
+        font-size: 30px;
+      }
+    }
+  }
+}
+
+.span-columns {
+  grid-column: span 2;
+}
+
+.table {
+  margin: 20px 0;
+
+  td:first-child {
+    text-align: right;
+  }
+
+  td:last-child {
+    text-align: left;
+  }
+
+  tbody tr:nth-child(odd) {
+    background: $light;
+  }
+  td {
+    padding: 5px
+  }
+}
+
+table {
+  border-collapse: collapse;
+}
