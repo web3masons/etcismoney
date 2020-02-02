@@ -1,6 +1,69 @@
-$light: rgba(255,255,255,.3);
-html {
-  background: rgb(200, 237, 200);
+@import './node_modules/normalize.css/normalize.css';
+
+$orange: rgba(254, 191, 123, 1);
+$purple: rgba(210, 144, 250, 1);
+$green: rgba(157, 255, 72, 1);
+
+$col1: #247BA0;
+$col2: #70C1B3;
+$col3: #B2DBBF;
+$col4: #F3FFBD;
+$col5: #FF1654;
+$light: rgb(254, 254, 254);
+$grey: #444;
+$dark: black;
+
+
+body {
+  font-family: 'Helvetica Neue', 'Helvetica', sans-serif;
+  font-weight: 200;
+  letter-spacing: 0.05em;
+  line-height: 1.4;
+  color: #333;
+}
+
+h1.title {
+  font-weight: 200;
+  font-size: 15vw;
+  height: 100vh;
+  line-height: 100vh;
+  margin: 0;
+  padding: 0;
+  color: $light;
+  background: $col1;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+
+}
+
+h3.subtitle {
+  img {
+    width: 4vw;
+  }
+
+  color: $light;
+  background: $col2;
+  font-size: 5vw;
+  margin: 0;
+  letter-spacing: 0.1em;
+  padding: 5em 12vw;
+  vertical-align: middle;
+}
+
+.container {
+  text-align: center;
+}
+
+a:hover {
+  opacity: 0.5;
+}
+
+
+table {
+  border-collapse: collapse;
 }
 
 .grid {
@@ -9,37 +72,91 @@ html {
 }
 
 .chart-container {
-  > div {
-    background: $light;
-    margin-left: 20px;
-    margin-top: 20px;
-    padding: 15px;
+  font-size: 1vw;
+
+  .chart-wrapper {
+    height: 20vw;
   }
+
+  .title {
+    small {
+      opacity: 0;
+      display: block;
+      padding: 5px;
+      margin-bottom: 1em;
+      background: black;
+      color: $light;
+      margin-top: -4em;
+    }
+
+    &:hover small {
+      opacity: 1;
+    }
+  }
+}
+
+ul {
+  margin: 0;
+  padding: 0;
+}
+
+p {
+  margin-bottom: 3em;
+  margin-top: 0;
 }
 
 .hard-money {
   text-align: left;
-  ul, li {
-    padding: 0;
-    margin: 0;
+  margin: auto;
+
+  .grid {
+    column-gap: 3em;
+    row-gap: 3em;
   }
-  li {
-    margin-left: 10px;
-    margin-bottom: 15px;
+}
+
+p:last-child {
+  margin: 0;
+}
+
+.big-text {
+  padding: 6em 0;
+  background: $col3;
+  font-size: 2vw;
+
+  &.alt {
+    background: $col4;
+  }
+
+
+  >div {
+    max-width: 60vw;
+    margin: auto;
+    font-size: 1.5vw;
   }
 }
 
 .countdown {
-  margin: 20px 0;
+  clear: both;
+  padding: 15vh 0;
+  background: $col5;
+  color: $light;
+
+  p {
+    font-size: 2vw;
+    margin: 0;
+  }
+
   .grid {
     grid-template-columns: repeat(4, 1fr);
     margin: auto;
-    width: 500px;
-    background:$light;
-    > div {
-      padding: 30px 10px;
-      > div {
-        font-size: 30px;
+
+    div {
+      font-size: 3vw;
+      font-weight: bold;
+
+      >div {
+        font-size: 14vw;
       }
     }
   }
@@ -50,24 +167,234 @@ html {
 }
 
 .table {
-  margin: 20px 0;
+  padding: 15vw 0;
+
+  p {
+    font-size: 2vw;
+  }
+
+  background: $light;
 
   td:first-child {
     text-align: right;
+    padding-left: 4vw;
+  }
+
+  table {
+    width: 100%;
+    font-size: 1.5vw;
   }
 
   td:last-child {
     text-align: left;
+    padding-right: 4vw;
   }
 
   tbody tr:nth-child(odd) {
-    background: $light;
+    background: rgba(0, 0, 0, .05);
   }
+
+  tbody {
+    background: rgba(255, 255, 255, .8);
+  }
+
+  td:first-child,
+  thead td {
+    font-weight: bold;
+    white-space: nowrap;
+  }
+
   td {
-    padding: 5px
+    padding: 2vh 2vw;
+  }
+
+  .btc {
+    background: rgba($orange, .6);
+  }
+
+  thead .btc {
+    background: $orange;
+  }
+
+  .eth {
+    background: rgba($purple, .6);
+  }
+
+  thead .eth {
+    background: $purple;
+  }
+
+  .etc {
+    background: rgba($green, .6);
+  }
+
+  thead .etc {
+    background: $green;
+  }
+
+  td.off {
+    background: rgba(0, 0, 0, .1);
   }
 }
 
-table {
-  border-collapse: collapse;
+.footer {
+  padding-top: 5em;
+  background: $col2;
+  color: $light;
+  font-size: 3vw;
+
+  img {
+    height: 8vw;
+    margin: 100px;
+  }
+}
+
+.choose {
+  font-size: 5vw;
+  padding: 3em 0em;
+  background: $col4;
+}
+
+code {
+  background: rgba(0, 0, 0, .09);
+  padding: 0.2em 0.4em;
+}
+
+.chart-grid {
+  background: $light;
+
+  >div {
+    width: 50%;
+    display: block;
+    float: left;
+    padding: 10vh 5vw;
+    box-sizing: border-box;
+  }
+
+  align-items: center;
+
+  .title {
+    margin-bottom: 1em;
+  }
+
+  .description {
+    text-align: left;
+    font-size: 1.5vw;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .big-text {
+    font-size: 8vw;
+
+    >p {
+      padding: 0 10vw;
+    }
+
+    >div {
+      font-size: 4vw;
+    }
+  }
+
+  .grid {
+    display: block;
+
+    >* {
+      padding-bottom: 3vh;
+    }
+  }
+
+  .chart-grid {
+    padding-top: 10vh;
+
+    >div {
+      width: 100%;
+      padding: 0 10vw;
+      padding-bottom: 10vh;
+    }
+
+    .chart-container {
+      font-size: 4vw;
+    }
+
+    .chart-wrapper {
+      height: 30vh;
+    }
+
+    .description {
+      font-size: 4vw;
+      text-align: center;
+    }
+  }
+
+  .countdown {
+    p {
+      font-size: 8vw;
+      padding: 10vh 10vw;
+      padding-top: 0;
+    }
+
+    .grid div {
+      font-size: 10vw;
+
+      >div {
+        font-size: 50vw;
+      }
+    }
+  }
+
+  .choose {
+    font-size: 8vw;
+    padding: 40vh 0;
+  }
+
+  .footer {
+    font-size: 6vw;
+    padding: 10vh 10vw;
+
+    img {
+      margin: 0;
+      height: 10vh;
+    }
+  }
+
+  h3.subtitle {
+    font-size: 8vw;
+
+    img {
+      height: 10vh;
+      margin-top: 5vh;
+      width: auto;
+    }
+  }
+
+  .table p {
+    font-size: 5vw;
+    padding: 0 5vw;
+  }
+
+  .table table {
+    td {
+      padding: 2px;
+    }
+
+    font-size: 3vw;
+
+    td:first-child {
+      padding: 1vh 2vw;
+      white-space: inherit;
+    }
+
+    td:last-child {
+      padding: 1vh 2vw;
+      // padding-right: 1vw;
+    }
+  }
+}
+
+.recharts-tooltip-wrapper {
+  text-shadow: 1px 1px 10px white;
+  background: rgba(255, 255, 255, .9);
+  padding: 4px;
+  text-align: left;
 }

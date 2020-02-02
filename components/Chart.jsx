@@ -11,10 +11,8 @@ import {
 } from 'recharts'
 import { formatMillions, formatDate, formatNumber, generateGraphPoints } from '../utils'
 
-const color1 = '#00ff00'
-const color2 = '#ff0000'
-const color3 = '#0000ff'
-const height = 350
+const color1 = '#70C1B3'
+const color2 = 'rgba(0,0,0,.7)'
 
 const data = generateGraphPoints()
 const theTime = new Date().getTime()
@@ -39,14 +37,16 @@ const chart = () => {
   return (
     <div className="chart-container">
       <div>
-        <div style={{ width: '100%', height: `${height}px` }}>
+        <div className="title">
+          <small>This is an estimate as actual emission varies slightly due to uncle rate</small>
+          ETC Emission Schedule*
+        </div>
+
+        <div className="chart-wrapper">
           <ResponsiveContainer width="100%" height="100%">
             <AreaChart
               id="chart"
-              width={500}
-              height={300}
               data={data}
-              margin={{ top: 10, right: 30, left: 0, bottom: 0 }}
             >
               <defs>
                 <linearGradient id="colorEmission" x1="0" y1="0" x2="0" y2="1">
@@ -57,7 +57,7 @@ const chart = () => {
               <CartesianGrid strokeDasharray="3 3" />
               <XAxis
                 dataKey="date"
-                minTickGap="150"
+                // minTickGap="150"
                 tickFormatter={t => `　${formatDate(t)}　`}
               />
               <YAxis tickFormatter={formatMillions} />
@@ -68,7 +68,15 @@ const chart = () => {
                 dataKey="emission"
                 fill="url(#colorEmission)"
               />
-              <ReferenceLine x={now} label="Now" stroke={color2} />
+              <ReferenceLine
+                x={now}
+                label={{
+                  position: 'right',
+                  value: 'Today',
+                  fill: color2
+                }}
+                stroke={color2}
+              />
             </AreaChart>
           </ResponsiveContainer>
         </div>

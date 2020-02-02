@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react'
 
 import { startDate, formatNumber, calculateBlockEmission } from '../utils'
 
+import Chart from './Chart'
+
 const apiUrl = 'https://blockscout.com/etc/mainnet/api?module=block&action=eth_block_number'
 
 const estimagedTotal = 200e6
@@ -47,52 +49,55 @@ function CountdownTimer () {
   const countdown = useCountdown(apiUrl)
 
   return (
-    <div className="countdown">
-      <p>
-        Like Bitcoin, Etheruem Classic has a fixed emission schedule.
-        <br />
-        ETC is the only major Smart Contract platform with a known future
-        supply.
-      </p>
-      <p>
-        Every <b>5,000,000</b> blocks, mining rewards are reduced by{' '}
-        <b>20%</b>.
-        <br />
-        About <b>{countdown.currentMined}%</b> of ETC that will ever exist has already been mined. The rest will be
-        mined by around <b>2065</b>.
-      </p>
-      <p>
-        The latest block is <b>{formatNumber(countdown.currentBlock)}</b>. The
-        next Era will arrive at block{' '}
-        <b>{formatNumber(countdown.targetBlock)}</b> in about:
-      </p>
-      <div className="grid">
-        <div>
-          <div>{countdown.days || '?'}</div>
-          days
-        </div>
-        <div>
-          <div>{countdown.hours || '?'}</div>
-          hours
-        </div>
-        <div>
-          <div>{countdown.minutes || '?'}</div>
-          minutes
-        </div>
-        <div>
-          <div>{countdown.seconds || '?'}</div>
-          seconds
+    <>
+      <div className="chart-grid">
+        <Chart />
+        <div className="description">
+          <p>
+            Every Era of <b>5,000,000</b> blocks, mining rewards are reduced by{' '}
+            <b>20%</b>.
+          </p>
+          <p>
+            About <b>{countdown.currentMined}%</b> of the ETC that will ever
+            exist has already been mined. Over 99% will be mined by around{' '}
+            <b>2065</b>.
+          </p>
+          <p>
+            <a
+              href="https://ecips.ethereumclassic.org/ECIPs/ecip-1017"
+              target="_blank"
+            >
+              ➡ Learn More about ECIP-1017
+            </a>
+          </p>
         </div>
       </div>
-      <p>
-        <a
-          href="https://ecips.ethereumclassic.org/ECIPs/ecip-1017"
-          target="_blank"
-        >
-          Learn More about ECIP-1017
-        </a>
-      </p>
-    </div>
+      <div className="countdown">
+        <p>
+          The latest block is <b>{formatNumber(countdown.currentBlock)}</b>. The
+          next Era will arrive at block{' '}
+          <b>{formatNumber(countdown.targetBlock)}</b> in about:
+        </p>
+        <div className="grid">
+          <div>
+            <div>{countdown.days || 0}</div>
+            days
+          </div>
+          <div>
+            <div>{countdown.hours || 0}</div>
+            hours
+          </div>
+          <div>
+            <div>{countdown.minutes || 0}</div>
+            minutes
+          </div>
+          <div>
+            <div>{countdown.seconds || 0}</div>
+            seconds
+          </div>
+        </div>
+      </div>
+    </>
   )
 }
 
