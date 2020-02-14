@@ -38,7 +38,7 @@ const chart = () => {
     <div className="chart-container">
       <div>
         <div className="title">
-          <small>This is an estimate as actual emission varies slightly due to uncle rate</small>
+          <small>This is an estimate; actual emission varies due to uncle rate, but not greatly</small>
           ETC Emission Schedule*
         </div>
 

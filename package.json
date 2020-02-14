@@ -5,7 +5,9 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "npm run dev"
+    "export": "next export",
+    "start": "npm run dev",
+    "deploy": "now --prod"
   },
   "dependencies": {
     "@zeit/next-sass": "^1.0.1",

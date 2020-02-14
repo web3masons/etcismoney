@@ -1,21 +1,20 @@
-@import './node_modules/normalize.css/normalize.css';
+@import "./node_modules/normalize.css/normalize.css";
 
 $orange: rgba(254, 191, 123, 1);
 $purple: rgba(210, 144, 250, 1);
 $green: rgba(157, 255, 72, 1);
 
-$col1: #247BA0;
-$col2: #70C1B3;
-$col3: #B2DBBF;
-$col4: #F3FFBD;
-$col5: #FF1654;
+$col1: #247ba0;
+$col2: #70c1b3;
+$col3: #b2dbbf;
+$col4: #f3ffbd;
+$col5: #ff1654;
 $light: rgb(254, 254, 254);
 $grey: #444;
 $dark: black;
 
-
 body {
-  font-family: 'Helvetica Neue', 'Helvetica', sans-serif;
+  font-family: "Helvetica Neue", "Helvetica", sans-serif;
   font-weight: 200;
   letter-spacing: 0.05em;
   line-height: 1.4;
@@ -36,7 +35,6 @@ h1.title {
 a {
   color: inherit;
   text-decoration: none;
-
 }
 
 h3.subtitle {
@@ -61,7 +59,6 @@ a:hover {
   opacity: 0.5;
 }
 
-
 table {
   border-collapse: collapse;
 }
@@ -72,10 +69,10 @@ table {
 }
 
 .chart-container {
-  font-size: 1vw;
+  font-size: 16px;
 
   .chart-wrapper {
-    height: 20vw;
+    height: 25vw;
   }
 
   .title {
@@ -122,17 +119,16 @@ p:last-child {
 .big-text {
   padding: 6em 0;
   background: $col3;
-  font-size: 2vw;
+  font-size: 2.5vw;
 
   &.alt {
     background: $col4;
   }
 
-
-  >div {
+  > div {
     max-width: 60vw;
     margin: auto;
-    font-size: 1.5vw;
+    font-size: 2vw;
   }
 }
 
@@ -155,7 +151,7 @@ p:last-child {
       font-size: 3vw;
       font-weight: bold;
 
-      >div {
+      > div {
         font-size: 14vw;
       }
     }
@@ -191,11 +187,11 @@ p:last-child {
   }
 
   tbody tr:nth-child(odd) {
-    background: rgba(0, 0, 0, .05);
+    background: rgba(0, 0, 0, 0.05);
   }
 
   tbody {
-    background: rgba(255, 255, 255, .8);
+    background: rgba(255, 255, 255, 0.8);
   }
 
   td:first-child,
@@ -209,7 +205,7 @@ p:last-child {
   }
 
   .btc {
-    background: rgba($orange, .6);
+    background: rgba($orange, 0.6);
   }
 
   thead .btc {
@@ -217,7 +213,7 @@ p:last-child {
   }
 
   .eth {
-    background: rgba($purple, .6);
+    background: rgba($purple, 0.6);
   }
 
   thead .eth {
@@ -225,7 +221,7 @@ p:last-child {
   }
 
   .etc {
-    background: rgba($green, .6);
+    background: rgba($green, 0.6);
   }
 
   thead .etc {
@@ -233,7 +229,7 @@ p:last-child {
   }
 
   td.off {
-    background: rgba(0, 0, 0, .1);
+    background: rgba(0, 0, 0, 0.1);
   }
 }
 
@@ -256,18 +252,18 @@ p:last-child {
 }
 
 code {
-  background: rgba(0, 0, 0, .09);
+  background: rgba(0, 0, 0, 0.09);
   padding: 0.2em 0.4em;
 }
 
 .chart-grid {
   background: $light;
 
-  >div {
+  > div {
     width: 50%;
     display: block;
     float: left;
-    padding: 10vh 5vw;
+    padding: 15vh 5vw;
     box-sizing: border-box;
   }
 
@@ -279,7 +275,7 @@ code {
 
   .description {
     text-align: left;
-    font-size: 1.5vw;
+    font-size: 1.7vw;
   }
 }
 
@@ -287,27 +283,28 @@ code {
   .big-text {
     font-size: 8vw;
 
-    >p {
+    > p {
       padding: 0 10vw;
     }
 
-    >div {
+    > div {
       font-size: 4vw;
+      max-width: 70vw;
     }
   }
 
   .grid {
     display: block;
 
-    >* {
-      padding-bottom: 3vh;
+    > * {
+      padding-bottom: 5vh;
     }
   }
 
   .chart-grid {
     padding-top: 10vh;
 
-    >div {
+    > div {
       width: 100%;
       padding: 0 10vw;
       padding-bottom: 10vh;
@@ -337,7 +334,7 @@ code {
     .grid div {
       font-size: 10vw;
 
-      >div {
+      > div {
         font-size: 50vw;
       }
     }
@@ -359,7 +356,7 @@ code {
   }
 
   h3.subtitle {
-    font-size: 8vw;
+    font-size: 7.5vw;
 
     img {
       height: 10vh;
@@ -394,7 +391,7 @@ code {
 
 .recharts-tooltip-wrapper {
   text-shadow: 1px 1px 10px white;
-  background: rgba(255, 255, 255, .9);
+  background: rgba(255, 255, 255, 0.9);
   padding: 4px;
   text-align: left;
 }

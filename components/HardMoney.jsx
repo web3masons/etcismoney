@@ -1,5 +1,5 @@
-import React from 'react'
-import Chart from './Chart'
+import React from "react";
+import Chart from "./Chart";
 
 export const text = `
 Money exists in many forms with varying degrees of usefulness.
@@ -8,7 +8,7 @@ This is a new paragraph and it's cool. This is not a new paragarph.
 This is a line break and doens't do much.
 
 Hello.
-`
+`;
 
 const HardMoney = () => (
   <>
@@ -18,7 +18,7 @@ const HardMoney = () => (
       </a>
     </h1>
     <h3 className="subtitle">
-      An opinionated reminder about the quailities of "hard money" and how they
+      An opinionated reminder about the qualities of "hard money" and how they
       relate to
       <br />
       <br />
@@ -30,46 +30,51 @@ const HardMoney = () => (
     <div className="hard-money big-text">
       <div>
         <p>
-          There are many different types of money, each with it's own degree of
-          usefulness. The usefulness of money can be measured with 7 major
+          There are many different types of money. Each type has it's own level
+          of usefulness. The usefulness of money can be measured using 7 major
           traits:
         </p>
         <ul className="grid">
           <li>
             <b>Fungible</b>
-            <br />A given unit is interchangeable with any other unit
+            <br />A given unit is interchangeable with any other unit. 1 ETC = 1
+            ETC.
           </li>
           <li>
             <b>Durable</b>
             <br />
-            Cryptocurrency does not degrade over time like physical money
+            Cryptocurrency does not degrade over time like physical money.
           </li>
           <li>
             <b>Divisible</b>
             <br />
-            One unit has 18 decimal places
+            Gold can be melted down and recast. ETC can be split to 18 decimal
+            places.
           </li>
           <li>
             <b>Portable</b>
             <br />
-            Frictionless transfers to anywhere in the universe
+            Cryptocurrencies enable frictionless transfers to anywhere in the
+            universe.
           </li>
           <li>
             <b>Acceptable</b>
             <br />
-            Available on a wide variety of exchanges
+            ETC is one of the most accepted cryptocurrencies - by hundreds of
+            exchanges worldwide.
           </li>
           <li>
             <b>Uncounterfitable</b>
             <br />
-            Cryptographically secure ownership
+            Proof of Work plus hash power equals double spending being extremely
+            difficult to achieve.
           </li>
           <li className="span-columns">
             <b>Limited in Supply</b>
             <br />
-            Last but not least, the supply (emission) is limited to prevent
+            Last but not least, the supply of ETC is limited to prevent
             devaluing by inflation; certainty about future supply provides a
-            stronger store of value
+            strong store of value.
           </li>
         </ul>
       </div>
@@ -79,12 +84,12 @@ const HardMoney = () => (
         Like Bitcoin, Ethereum Classic has a <b>fixed emission schedule</b>.
       </p>
       <p>
-        ETC is the only major Smart Contract platform with a{' '}
+        ETC is the only major Smart Contract platform with a{" "}
         <b>known future supply</b>.
       </p>
       <p>Here's what that future supply looks like:</p>
     </div>
   </>
-)
+);
 
-export default HardMoney
+export default HardMoney;

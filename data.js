@@ -5,10 +5,10 @@ export const columns = [
 ]
 
 export const rows = [
-  { key: 'limitedSupply', name: 'Known Supply', text: 'BTC and ETC have a fixed emission curve, as shown above. ETH has an unknown future supply that can be changed at any time.' },
+  { key: 'limitedSupply', name: 'Known Supply', text: 'BTC and ETC have a fixed emission curve, as shown above. ETH has an unknown future supply that can be easily changed at any time.' },
   { key: 'proofOfWork', name: 'Proof of Work', text: 'ETH is switching to Proof of Stake in the near future. ETC is committed to remaining on the more secure Proof of Work indefinitely.' },
-  { key: 'programmable', name: 'Turing Complete', text: 'ETH and ETC use the same underlying EVM to enable Smart Contracts; any contract deployed on ETH can also be deployed on ETC.' },
-  { key: 'premine', name: 'No Premine', text: 'About 70m ETH was pre-allocated to investors and developers. When they began, ETC and BTC distributions were not pre-mined.' },
+  { key: 'programmable', name: 'Turing Complete', text: 'ETH and ETC use the same underlying EVM to enable Smart Contracts; any contract deployed on ETH will also be deployable on ETC.' },
+  { key: 'premine', name: 'No Premine', text: 'About 70m ETH (now well over half) was pre-allocated to investors and developers. ETC and BTC distributions were not pre-mined.' },
   { key: 'foundation', name: 'No Foundation', text: 'BTC and ETC have no central leadership or foundation to direct development, making them more decentralized and resilient.' },
   { key: 'irregularState', name: 'No Irregular State', text: 'ETC exists in response to ETH\'s TheDAO bailout hardfork. This "irregular state change" is a permenant reminder that your ETH can be confiscated.' },
   { key: 'l1scalability', name: 'Layer 1 Scalabiltiy', text: 'ETH\'s attempt to scale Layer 1 necessarily creates state bloat, security and availability tradeoffs for only a meager increase in throughput.' },

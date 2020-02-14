@@ -15,8 +15,7 @@ function useCountdown (url) {
     const thisEra = Math.floor(currentBlock / 5e6)
     const nextEra = thisEra + 1
     const targetBlock = nextEra * 5e6
-    const targetTime = startDate + (targetBlock * 15 * 1000)
-    const difference = +new Date(targetTime) - +new Date()
+    const difference = (targetBlock - currentBlock) * 15 * 1000
     setData({
       currentBlock,
       thisEra,
@@ -24,7 +23,6 @@ function useCountdown (url) {
       currentMined,
       nextEra,
       targetBlock,
-      targetTime,
       ready: true,
       days: Math.floor(difference / (1000 * 60 * 60 * 24)),
       hours: Math.floor((difference / (1000 * 60 * 60)) % 24),
