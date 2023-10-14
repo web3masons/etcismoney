@@ -4,7 +4,7 @@ import { startDate, formatNumber, calculateBlockEmission } from '../utils'
 
 import Chart from './Chart'
 
-const apiUrl = 'https://blockscout.com/etc/mainnet/api?module=block&action=eth_block_number'
+const apiUrl = 'https://etc.blockscout.com/api/v2/stats'
 
 const estimagedTotal = 200e6
 
@@ -32,12 +32,14 @@ function useCountdown (url) {
     setTimeout(tick, 1000)
   }
   async function fetchUrl () {
-    const response = await fetch(url)
-    const json = await response.json()
-    currentBlock = parseInt(json.result.slice(2), 16)
-    currentEmission = calculateBlockEmission(currentBlock)
-    currentMined = Math.floor((currentEmission / estimagedTotal) * 100)
-    tick()
+    try {
+      const response = await fetch(url)
+      const json = await response.json()
+      currentBlock = parseInt(json.total_blocks)
+      currentEmission = calculateBlockEmission(currentBlock)
+      currentMined = Math.floor((currentEmission / estimagedTotal) * 100)
+      tick()
+    } catch {}
   }
   useEffect(() => { fetchUrl() }, [])
   return data

@@ -1,8 +1,6 @@
 import React from "react";
 import Head from "next/head";
 
-import "../style.scss";
-
 import HardMoney from "../components/HardMoney";
 import Countdown from "../components/Countdown";
 import Table from "../components/Table";
