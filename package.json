@@ -6,7 +6,7 @@
     "dev": "next dev",
     "build": "next build",
     "export": "next export",
-    "start": "npm run dev",
+    "start": "next start",
     "deploy": "now --prod"
   },
   "dependencies": {
@@ -17,14 +17,5 @@
     "react-dom": "18.2.0",
     "recharts": "^2.8.0",
     "sass": "^1.69.3"
-  },
-  "devDependencies": {
-    "eslint": "^8.51.0",
-    "eslint-config-standard": "^17.1.0",
-    "eslint-plugin-import": "^2.28.1",
-    "eslint-plugin-node": "^11.1.0",
-    "eslint-plugin-promise": "^6.1.1",
-    "eslint-plugin-react": "^7.33.2",
-    "eslint-plugin-standard": "^4.1.0"
   }
 }
