@@ -7,9 +7,10 @@ const era1UncleMinerReward = 7 / 8
 const era2UncleMinerReward = 1 / 32
 const initialAmount = 72002454.77
 const averageUncles = 0.054
-const averageBlockTime = 15
 
 export const startDate = new Date('07/30/2015').getTime()
+
+export const defaultAverageBlockTime = 14
 
 const averageBaseUncleEmission = staticReward * averageUncles * maxUncleRewards
 
@@ -37,12 +38,16 @@ export function calculateBlockEmission (block) {
   return Math.floor(totalEmission)
 }
 
-export function generateGraphPoints (resolution = 100, endBlock = 100000000) {
-  // estimate the time based on seconds
+export function generateGraphPoints (current, resolution = 100, endBlock = 100000000) {
+  const timePassed = new Date().getTime() - startDate
+  const timePassedSeconds = timePassed / 1000
+  // if current block not passed, make a guess
+  const currentBlock = current || Math.floor(timePassedSeconds / defaultAverageBlockTime)
+  const averageBlockTime = timePassed / currentBlock 
   const interval = endBlock / resolution
   return new Array(resolution + 1).fill(null).map((n, i) => {
     const block = interval * i
-    const date = startDate + (block * averageBlockTime * 1000)
+    const date = startDate + (block * averageBlockTime)
     return { block, emission: calculateBlockEmission(block), date }
   })
 }

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import {
   AreaChart,
   XAxis,
@@ -14,9 +14,7 @@ import { formatMillions, formatDate, formatNumber, generateGraphPoints } from '.
 const color1 = '#70C1B3'
 const color2 = 'rgba(0,0,0,.7)'
 
-const data = generateGraphPoints()
 const theTime = new Date().getTime()
-const { date: now } = data.find(d => d.date > theTime)
 
 const MyTooltip = ({ active, payload }) => {
   if (!active) { return null }
@@ -33,7 +31,20 @@ const MyTooltip = ({ active, payload }) => {
   )
 }
 
-const chart = () => {
+const chart = ({ currentBlock }) => {
+
+  const [data, setData] = useState(null)
+
+  // calculate state when currentBlock changes
+  useEffect(() => {
+    setData(generateGraphPoints(currentBlock))
+  }, [currentBlock])
+
+  if (!data) { return null }
+  const match = data.find(d => d.date > theTime)
+  if (!match) { return null }
+  const now = match.date
+
   return (
     <div className="chart-container">
       <div>

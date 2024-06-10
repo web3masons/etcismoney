@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 
-import { startDate, formatNumber, calculateBlockEmission } from '../utils'
+import { startDate, formatNumber, calculateBlockEmission, defaultAverageBlockTime } from '../utils'
 
 import Chart from './Chart'
 
@@ -10,13 +10,14 @@ const estimagedTotal = 200e6
 
 function useCountdown (url) {
   const [data, setData] = useState([])
-  let currentBlock, currentEmission, currentMined, start, blockTime
+  let currentBlock, currentEmission, currentMined, start
   function tick () {
     const thisEra = Math.floor(currentBlock / 5e6)
     const nextEra = thisEra + 1
     const targetBlock = nextEra * 5e6
-    const difference = (targetBlock - currentBlock) * blockTime
     const elapsed = new Date() - start
+    const blockTime = (new Date() - startDate) / currentBlock
+    const difference = (targetBlock - currentBlock) * blockTime
     const timeDiff = difference - elapsed
     setData({
       currentBlock,
@@ -39,7 +40,6 @@ function useCountdown (url) {
       const response = await fetch(url)
       const json = await response.json()
       start = new Date().getTime()
-      blockTime = json.average_block_time
       currentBlock = parseInt(json.total_blocks)
       currentEmission = calculateBlockEmission(currentBlock)
       currentMined = Math.floor((currentEmission / estimagedTotal) * 100)
@@ -56,7 +56,7 @@ function CountdownTimer () {
   return (
     <>
       <div className="chart-grid">
-        <Chart />
+        <Chart currentBlock={countdown.currentBlock} />
         <div className="description">
           <p>
             Every Era of <b>5,000,000</b> blocks, mining rewards are reduced by{' '}
@@ -102,7 +102,7 @@ function CountdownTimer () {
           </div>
         </div>
         <p>
-          (based on an average block time of <b>{Math.round(countdown.blockTime / 1000, 2)}</b> seconds)
+          (based on average block time of <b>{Math.round(countdown.blockTime / 1000, 2)}</b> seconds)
         </p>
       </div>
     </>
