@@ -140,17 +140,16 @@ p:last-child {
 
   p {
     font-size: 2vw;
-    margin: 0;
   }
 
   .grid {
     grid-template-columns: repeat(4, 1fr);
     margin: auto;
-
+    margin-bottom: 6em;
     div {
       font-size: 3vw;
       font-weight: bold;
-
+      
       > div {
         font-size: 14vw;
       }

@@ -10,24 +10,27 @@ const estimagedTotal = 200e6
 
 function useCountdown (url) {
   const [data, setData] = useState([])
-  let currentBlock, currentEmission, currentMined
+  let currentBlock, currentEmission, currentMined, start, blockTime
   function tick () {
     const thisEra = Math.floor(currentBlock / 5e6)
     const nextEra = thisEra + 1
     const targetBlock = nextEra * 5e6
-    const difference = (targetBlock - currentBlock) * 15 * 1000
+    const difference = (targetBlock - currentBlock) * blockTime
+    const elapsed = new Date() - start
+    const timeDiff = difference - elapsed
     setData({
       currentBlock,
       thisEra,
       currentEmission,
       currentMined,
       nextEra,
+      blockTime,
       targetBlock,
       ready: true,
-      days: Math.floor(difference / (1000 * 60 * 60 * 24)),
-      hours: Math.floor((difference / (1000 * 60 * 60)) % 24),
-      minutes: Math.floor((difference / 1000 / 60) % 60),
-      seconds: Math.floor((difference / 1000) % 60)
+      days: Math.floor(timeDiff / (1000 * 60 * 60 * 24)),
+      hours: Math.floor((timeDiff / (1000 * 60 * 60)) % 24),
+      minutes: Math.floor((timeDiff / 1000 / 60) % 60),
+      seconds: Math.floor((timeDiff / 1000) % 60)
     })
     setTimeout(tick, 1000)
   }
@@ -35,6 +38,8 @@ function useCountdown (url) {
     try {
       const response = await fetch(url)
       const json = await response.json()
+      start = new Date().getTime()
+      blockTime = json.average_block_time
       currentBlock = parseInt(json.total_blocks)
       currentEmission = calculateBlockEmission(currentBlock)
       currentMined = Math.floor((currentEmission / estimagedTotal) * 100)
@@ -96,6 +101,9 @@ function CountdownTimer () {
             seconds
           </div>
         </div>
+        <p>
+          (based on an average block time of <b>{Math.round(countdown.blockTime / 1000, 2)}</b> seconds)
+        </p>
       </div>
     </>
   )
